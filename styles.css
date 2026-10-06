@@ -394,3 +394,31 @@ img {
   background: #fff;
   border-top: 1px solid var(--border-color);
 }
+
+/* ==========================================
+   BOTÓN FLOTANTE DE WHATSAPP (CONVERSIÓN DIRECTA)
+   ========================================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.05);
+  background-color: #1eb954;
+  color: #fff;
+}
