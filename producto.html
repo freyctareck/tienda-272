@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del Producto | Tienda 272</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Barra de Anuncio -->
+  <div class="top-bar">
+    ⚡ <span>OFERTA DISPONIBLE:</span> PAGO CONTRA ENTREGA O VÍA WHATSAPP
+  </div>
+
+  <!-- Encabezado -->
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <a href="index.html"><img src="Imagenes/logo.png" alt="Logotipo de 272"></a>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">TIENDA</a></li>
+          <li><a href="contacto.html">CONTACTO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenedor del producto dinámico -->
+  <main class="container" style="padding: 40px 16px;">
+    <div id="product-detail-container" style="max-width: 900px; margin: 0 auto;">
+      <p style="text-align: center;">Cargando información del producto...</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="text-align: center;">
+      <p><strong>272 | Tienda En Línea</strong> — Envíos y atención directa.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Lógica para cargar el producto por ID desde la URL
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodId = urlParams.get('id');
+      const contenedor = document.getElementById('product-detail-container');
+
+      if (!prodId) {
+        contenedor.innerHTML = '<p>Producto no encontrado.</p>';
+        return;
+      }
+
+      try {
+        const res = await fetch('productos.json');
+        const productos = await res.json();
+        const producto = productos.find(p => p.id === prodId);
+
+        if (!producto) {
+          contenedor.innerHTML = '<p>El producto solicitado no existe.</p>';
+          return;
+        }
+
+        const linkWA = construirLinkWhatsApp(producto);
+
+        contenedor.innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: start;">
+            <div>
+              <img src="${producto.imagen_principal}" alt="${producto.titulo}" style="width:100%; border-radius:12px; border:1px solid var(--border-color);">
+            </div>
+            <div>
+              <span class="badge" style="margin-bottom:8px; display:inline-block;">OFERTA DESTACADA</span>
+              <h1 style="font-size: 1.8rem; margin-bottom: 10px;">${producto.titulo}</h1>
+              <p style="color: var(--text-muted); margin-bottom: 15px;">${producto.subtitulo}</p>
+              
+              <div style="font-size: 1.8rem; font-weight: 800; color: var(--dark-bg); margin-bottom: 20px;">
+                $${producto.precio_oferta} MXN <span style="font-size: 1rem; text-decoration: line-through; color: var(--text-muted);">$${producto.precio_regular} MXN</span>
+              </div>
+
+              <a href="${linkWA}" target="_blank" style="text-decoration:none;">
+                <button class="btn-buy" style="background-color: #25D366; width:100%; font-size:1.1rem; padding:14px;">
+                  💬 COMPRAR AHORA POR WHATSAPP
+                </button>
+              </a>
+
+              <div style="margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                <h3>Características clave:</h3>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                  ${producto.caracteristicas.map(item => `<li style="margin-bottom:6px;">${item}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      } catch (e) {
+        contenedor.innerHTML = '<p>Error al cargar el producto.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
