@@ -41,9 +41,8 @@
     </div>
   </footer>
 
-  <script src="app.js"></script>
+<script src="app.js"></script>
   <script>
-    // Lógica para cargar el producto por ID desde la URL
     document.addEventListener('DOMContentLoaded', async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const prodId = urlParams.get('id');
@@ -72,23 +71,43 @@
               <img src="${producto.imagen_principal}" alt="${producto.titulo}" style="width:100%; border-radius:12px; border:1px solid var(--border-color);">
             </div>
             <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">OFERTA DESTACADA</span>
-              <h1 style="font-size: 1.8rem; margin-bottom: 10px;">${producto.titulo}</h1>
+              <span class="badge" style="margin-bottom:8px; display:inline-block; background-color: var(--primary-color); color: #000; padding: 4px 8px; border-radius: 4px; font-weight:bold;">OFERTA DESTACADA</span>
+              <h1 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--dark-bg);">${producto.titulo}</h1>
               <p style="color: var(--text-muted); margin-bottom: 15px;">${producto.subtitulo}</p>
               
               <div style="font-size: 1.8rem; font-weight: 800; color: var(--dark-bg); margin-bottom: 20px;">
                 $${producto.precio_oferta} MXN <span style="font-size: 1rem; text-decoration: line-through; color: var(--text-muted);">$${producto.precio_regular} MXN</span>
               </div>
 
-              <a href="${linkWA}" target="_blank" style="text-decoration:none;">
-                <button class="btn-buy" style="background-color: #25D366; width:100%; font-size:1.1rem; padding:14px;">
-                  💬 COMPRAR AHORA POR WHATSAPP
-                </button>
-              </a>
+              <!-- OPCIONES DE PAGO MULTICANAL -->
+              <div style="background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 20px;">
+                <h3 style="margin-bottom: 12px; font-size: 1rem;">Selecciona tu método de pago:</h3>
+                
+                <a href="${linkWA}" target="_blank" style="text-decoration:none;">
+                  <button class="btn-buy" style="background-color: #25D366 !important; color: #fff !important; width:100%; font-size:1rem; padding:12px; margin-bottom: 10px; border:none; border-radius:6px; cursor:pointer;">
+                    💬 Pedir directo por WhatsApp
+                  </button>
+                </a>
 
-              <div style="margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button onclick="alert('Redirigiendo a pasarela de Mercado Pago...')" style="padding: 10px; background: #009ee3; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    💳 Mercado Pago
+                  </button>
+                  <button onclick="alert('Redirigiendo a Checkout PayPal...')" style="padding: 10px; background: #003087; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    🅿️ PayPal
+                  </button>
+                  <button onclick="alert('Generando ficha de depósito OXXO...')" style="padding: 10px; background: #d32f2f; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    🏪 OXXO
+                  </button>
+                  <button onclick="alert('Mostrando datos de transferencia SPEI...')" style="padding: 10px; background: #333; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    🏦 SPEI / Clabe
+                  </button>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid var(--border-color); padding-top: 15px;">
                 <h3>Características clave:</h3>
-                <ul style="margin-top: 10px; padding-left: 20px;">
+                <ul style="margin-top: 10px; padding-left: 20px; color: var(--text-main);">
                   ${producto.caracteristicas.map(item => `<li style="margin-bottom:6px;">${item}</li>`).join('')}
                 </ul>
               </div>
