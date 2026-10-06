@@ -1,0 +1,50 @@
+[
+  {
+    "id": "prod-001",
+    "slug": "producto-muestra-1",
+    "titulo": "Producto de Muestra Hipotético 272",
+    "subtitulo": "Solución práctica y rápida para tu día a día",
+    "precio_regular": 145.00,
+    "precio_oferta": 123.54,
+    "descuento_porcentaje": "15%",
+    "imagen_principal": "Imagenes/FOTO_HIPOTETICA.png",
+    "envio_gratis": true,
+    "stock_disponible": true,
+    "descripcion_corta": "Obtén cupones, ofertas y promociones exclusivas. Tus pedidos se procesan en segundos con entrega prioritaria.",
+    "caracteristicas": [
+      "Garantía directa de satisfacción.",
+      "Procesamiento e inspección de calidad antes del envío.",
+      "Pago 100% seguro contra entrega o en línea."
+    ],
+    "preguntas_frecuentes": [
+      {
+        "pregunta": "¿Cuánto tarda en llegar mi pedido?",
+        "respuesta": "Los pedidos locales se entregan de 24 a 48 horas."
+      }
+    ]
+  },
+  {
+    "id": "prod-002",
+    "slug": "paquete-herramienta-272",
+    "titulo": "Paquete Especial de Herramientas y Accesorios",
+    "subtitulo": "Edición limitada de alta demanda para el hogar",
+    "precio_regular": 299.00,
+    "precio_oferta": 249.00,
+    "descuento_porcentaje": "17%",
+    "imagen_principal": "Imagenes/FOTO_HIPOTETICA.png",
+    "envio_gratis": true,
+    "stock_disponible": true,
+    "descripcion_corta": "Edición especial con envío inmediato. Incluye atención personalizada y seguimiento vía WhatsApp.",
+    "caracteristicas": [
+      "Material de alta resistencia y durabilidad.",
+      "Empaque sellado con certificación de inspección.",
+      "Soporte post-venta incluido."
+    ],
+    "preguntas_frecuentes": [
+      {
+        "pregunta": "¿Aceptan pago en OXXO?",
+        "respuesta": "Sí, al dar clic en comprar te generamos la ficha de pago para OXXO o SPEI."
+      }
+    ]
+  }
+]
