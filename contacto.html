@@ -4,39 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto | Tienda 272</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="top-bar">⚡ <span>ATENCIÓN DIRECTA:</span> RESOLVEMOS TUS DUDAS EN MINUTOS</div>
-  <header class="header">
-    <div class="container header-content">
-      <div class="logo"><a href="index.html"><img src="Imagenes/logo.png" alt="272"></a></div>
+
+  <div class="announcement-bar">
+    <span>⚡ ATENCIÓN DIRECTA: RESOLVEMOS TUS DUDAS EN MINUTOS</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo"><span class="logo-accent">272</span>.mx</a>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">TIENDA</a></li>
-          <li><a href="contacto.html">CONTACTO</a></li>
-          <li><a href="ayuda.html">AYUDA</a></li>
+          <li><a href="index.html">Catálogo</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="ayuda.html">Ayuda</a></li>
+          <li><a href="recursos.html">Recursos</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container" style="padding: 40px 16px; max-width: 600px;">
+  <main class="container" style="padding: 60px 20px; max-width: 600px; text-align: center;">
     <h1 style="margin-bottom: 10px;">Atención al Cliente 272</h1>
-    <p style="color: var(--text-muted); margin-bottom: 20px;">¿Tienes dudas sobre tu pedido o sobre un producto local?</p>
+    <p style="color: var(--gray-text); margin-bottom: 30px;">¿Tienes dudas sobre tu pedido o sobre la disponibilidad de un producto?</p>
     
-    <div style="background: #fff; padding: 24px; border-radius: 8px; border: 1px solid var(--border-color);">
-      <a href="https://wa.me/522722796693?text=Hola%20Tienda%20272,%20deseo%20información" target="_blank" style="text-decoration:none;">
-        <button class="btn-buy" style="background-color: var(--accent-green) !important; color: #fff !important; margin-bottom: 15px;">
-          💬 Enviar mensaje directo a WhatsApp
-        </button>
+    <div style="background: var(--white); padding: 30px; border-radius: var(--border-radius); border: 1px solid var(--gray-border);">
+      <a href="https://wa.me/522722796693?text=Hola%20Tienda%20272,%20deseo%20información" target="_blank" class="btn btn-whatsapp btn-block" style="font-size: 1.1rem; margin-bottom: 15px;">
+        💬 Enviar mensaje directo a WhatsApp
       </a>
-      <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;">Horario de atención: Lunes a Sábado de 9:00 AM a 7:00 PM</p>
+      <p style="font-size: 0.9rem; color: var(--gray-text);">Horario de atención: Lunes a Sábado de 9:00 AM a 7:00 PM</p>
     </div>
   </main>
 
   <footer class="footer">
-    <div class="container" style="text-align: center;"><p><strong>272 | Tienda En Línea</strong></p></div>
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-accent" style="font-size: 1.5rem; font-weight: 700;">272</span>
+        <p>Tu tienda online de confianza.</p>
+      </div>
+      <div class="footer-links">
+        <a href="contacto.html">Contacto</a>
+        <a href="ayuda.html">Ayuda</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 272®. Todos los derechos reservados.</p>
+    </div>
   </footer>
+
+  <a href="https://wa.me/522722796693?text=Hola%20Tienda%20272,%20deseo%20información" class="whatsapp-float" target="_blank">
+    💬
+  </a>
 </body>
 </html>
