@@ -1,20 +1,25 @@
 // ==========================================
-// TIENDA 272 - LÓGICA DE TIENDA Y CHECKOUT
+// TIENDA 272 - LÓGICA DE TIENDA Y CATÁLOGO
 // ==========================================
 
-// Configuración de la tienda
+// Configuración global de la tienda
 const TIENDA_CONFIG = {
   telefonoWA: "522722796693", // Teléfono oficial Tienda 272
   emailContacto: "tienda272@outlook.com"
 };
 
-// Cargar productos desde productos.json
+// Variable para almacenar en memoria los productos cargados
+let productosCache = [];
+
+// Cargar productos dinámicamente desde productos.json
 async function obtenerProductos() {
+  if (productosCache.length > 0) return productosCache;
+  
   try {
     const respuesta = await fetch('productos.json');
     if (!respuesta.ok) throw new Error('No se pudo cargar el archivo productos.json');
-    const datos = await respuesta.json();
-    return datos;
+    productosCache = await respuesta.json();
+    return productosCache;
   } catch (error) {
     console.error('Error cargando el catálogo:', error);
     return [];
@@ -33,62 +38,84 @@ function construirLinkWhatsApp(producto) {
   return `https://wa.me/${TIENDA_CONFIG.telefonoWA}?text=${mensaje}`;
 }
 
-// Renderizar catálogo en la página principal (index.html)
-async function renderizarCatalogoIndex() {
+// Renderizar el catálogo con soporte para filtros
+function renderizarTarjetas(productos) {
   const contenedor = document.getElementById('catalog-container');
-  if (!contenedor) return; // Si no estamos en index.html, omitir
-
-  const productos = await obtenerProductos();
+  if (!contenedor) return;
 
   if (productos.length === 0) {
-    contenedor.innerHTML = `<p style="text-align:center; grid-column: 1/-1;">No hay productos disponibles por el momento.</p>`;
+    contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--gray-text); padding: 40px 0;">No se encontraron productos coincidentes.</p>`;
     return;
   }
 
-  // Generar HTML dinámico por cada producto en productos.json
+  // Genera la retícula limpia y profesional usando las variables de tu estilos CSS
   contenedor.innerHTML = productos.map(prod => `
-    <article class="product-item-card">
-      <div class="product-badges" style="justify-content: center;">
-        ${prod.descuento_porcentaje ? `<span class="badge">AHORRAS ${prod.descuento_porcentaje}</span>` : ''}
-        ${prod.envio_gratis ? `<span class="badge badge-free-shipping">ENVÍO GRATIS</span>` : ''}
+    <article class="product-card-unit">
+      <div class="product-thumb-container">
+        <img src="${prod.imagen_principal || prod.imagen}" alt="${prod.titulo}">
+        ${prod.etiqueta ? `<span class="badge-top-left">\${prod.etiqueta}</span>` : ''}
       </div>
-      <img src="${prod.imagen_principal}" alt="${prod.titulo}">
-      <h3>${prod.titulo}</h3>
-      <p style="font-size: 1.25rem; font-weight: 800; color: var(--dark-bg); margin: 8px 0;">
-        $${prod.precio_oferta} MXN
-      </p>
-      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
-        <a href="producto.html?id=${prod.id}">
-          <button class="btn-buy" style="padding: 10px; font-size: 0.95rem; background-color: var(--dark-bg);">
-            🔍 VER DETALLES (MICROSITIO)
-          </button>
-        </a>
-        <a href="${construirLinkWhatsApp(prod)}" target="_blank" style="text-decoration:none;">
-          <button class="btn-buy" style="padding: 10px; font-size: 0.95rem; background-color: #25D366;">
-            💬 COMPRAR DATO DIRECTO
-          </button>
-        </a>
+      <div class="product-info-body">
+        <div class="product-rating">★★★★★ (${prod.rating || '4.9'})</div>
+        <h3 class="product-item-title">${prod.titulo}</h3>
+        <div class="product-item-price">
+          <span class="price-main">$${prod.precio_oferta} MXN</span>
+          ${prod.precio_regular ? `<span class="price-strike">\$\${prod.precio_regular} MXN</span>` : ''}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+          <a href="producto.html?id=${prod.id}" class="btn btn-primary btn-block btn-sm">VER DETALLES</a>
+          <a href="${construirLinkWhatsApp(prod)}" target="_blank" class="btn btn-whatsapp btn-block btn-sm">
+            💬 PEDIR POR WHATSAPP
+          </a>
+        </div>
       </div>
     </article>
   `).join('');
 }
 
-// Inicializar al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  renderizarCatalogoIndex();
-});
+// Inicializar la carga del catálogo
+async function inicializarCatalogo() {
+  const productos = await obtenerProductos();
+  renderizarTarjetas(productos);
+}
 
 // ==========================================
-// TEMPORIZADOR DINÁMICO DE OFERTA (BLEAME STYLE)
+// FILTROS Y BÚSQUEDA EN TIEMPO REAL
 // ==========================================
+
+function filtrarCategoria(cat, elemento) {
+  // Cambiar la clase activa visual en los botones de filtro
+  document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+  if (elemento) elemento.classList.add('active');
+
+  if (cat === 'todos') {
+    renderizarTarjetas(productosCache);
+  } else {
+    const filtrados = productosCache.filter(p => p.categoria === cat);
+    renderizarTarjetas(filtrados);
+  }
+}
+
+function filtrarCatalogo() {
+  const input = document.getElementById('catalog-search');
+  if (!input) return;
+  
+  const texto = input.value.toLowerCase();
+  const filtrados = productosCache.filter(p => p.titulo.toLowerCase().includes(texto));
+  renderizarTarjetas(filtrados);
+}
+
+// ==========================================
+// TEMPORIZADOR DINÁMICO DE OFERTA
+// ==========================================
+
 function iniciarTimerOferta() {
   const displayTimer = document.getElementById('banner-timer');
   if (!displayTimer) return;
 
-  // Tiempo inicial de 15 minutos (900 segundos)
-  let tiempoRestante = 900; 
+  let tiempoRestante = 900; // 15 minutos
 
-  const intervalo = setInterval(() => {
+  setInterval(() => {
     let minutos = Math.floor(tiempoRestante / 60);
     let segundos = tiempoRestante % 60;
 
@@ -96,13 +123,13 @@ function iniciarTimerOferta() {
     displayTimer.textContent = `${minutos}m ${segundos}s`;
 
     if (--tiempoRestante < 0) {
-      tiempoRestante = 900; // Reinicia el ciclo para mantener la oferta activa
+      tiempoRestante = 900;
     }
   }, 1000);
 }
 
-// Asegurar que se ejecute la función al iniciar la página
+// Inicialización general al cargar el DOM
 document.addEventListener('DOMContentLoaded', () => {
   iniciarTimerOferta();
-  renderizarCatalogoIndex();
+  inicializarCatalogo();
 });
