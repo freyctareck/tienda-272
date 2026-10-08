@@ -695,3 +695,152 @@ body {
   width: 100%;
   font-family: var(--font-family);
 }
+
+/* ==========================================
+   ESTILOS ESPECÍFICOS DEL CATÁLOGO UNIFICADO
+   ========================================== */
+
+.catalog-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
+@media (min-width: 768px) {
+  .catalog-controls {
+    flex-direction: row;
+  }
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 16px;
+  border: 1px solid var(--gray-border);
+  border-radius: 20px;
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--primary-orange);
+}
+
+.category-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--gray-border);
+  background-color: var(--white);
+  color: var(--dark-navy);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill-btn.active, .pill-btn:hover {
+  background-color: var(--primary-orange);
+  color: var(--white);
+  border-color: var(--primary-orange);
+}
+
+/* GRID DE PRODUCTOS HOMOGÉNEO */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.product-card-unit {
+  background-color: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card-unit:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+}
+
+.product-thumb-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background-color: #f1f5f9;
+}
+
+.product-thumb-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge-top-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--dark-navy);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.product-info-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-rating {
+  font-size: 0.8rem;
+  color: #f59e0b;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.product-item-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.product-item-price {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.price-main {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-orange);
+}
+
+.price-strike {
+  font-size: 0.85rem;
+  color: var(--gray-text);
+  text-decoration: line-through;
+}
