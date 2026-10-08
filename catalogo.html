@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Completo | 272®</title>
+  <title>Catálogo Completo | 272.mx</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,13 +11,13 @@
 </head>
 <body>
 
-  <!-- BARRA SUPERIOR DE ANUNCIOS -->
+  <!-- BARRA DE ANUNCIOS -->
   <div class="announcement-bar">
-    <span>🔥 ENVÍO GRATIS Y PAGOS EN EFECTIVO EN OXXO / CONTRAENTREGA</span>
+    <span>🔥 OFERTA RELÁMPAGO: ENVÍO GRATIS Y PAGOS EN EFECTIVO EN OXXO / CONTRAENTREGA</span>
     <span class="timer-badge" id="banner-timer">15m 00s</span>
   </div>
 
-  <!-- NAVEGACIÓN ESTILO GOOGLE SITES -->
+  <!-- NAVEGACIÓN -->
   <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo">
@@ -25,26 +25,42 @@
       </a>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="catalogo.html">Catálogo</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="index.html">Catálogo</a></li>
+          <li><a href="index.html#por-que-272">Por qué 272</a></li>
+          <li><a href="index.html#opiniones">Opiniones</a></li>
           <li><a href="ayuda.html">Ayuda</a></li>
         </ul>
       </nav>
+      <div class="nav-actions">
+        <a href="catalogo.html" class="btn btn-secondary-nav">Ver Productos</a>
+      </div>
     </div>
   </header>
 
-  <!-- SECCIÓN CATÁLOGO DE PRODUCTOS -->
-  <main class="catalog-section">
+  <!-- SECCIÓN PRINCIPAL DEL CATÁLOGO -->
+  <section class="catalog-section" style="padding: 40px 0 80px 0;">
     <div class="container">
-      <h1 class="section-title">Catálogo de Productos</h1>
-      <p class="section-subtitle">Explora todos nuestros artículos disponibles</p>
-      
-      <div class="features-grid" id="catalog-container">
-        <!-- Carga dinámica mediante app.js -->
+      <h1 class="section-title">Todos los Productos</h1>
+      <p class="section-subtitle">Selecciona para ver especificaciones y detalles</p>
+
+      <!-- BARRA DE CONTROL: BUSCADOR Y CATEGORÍAS -->
+      <div class="catalog-controls">
+        <div class="search-box">
+          <input type="text" id="catalog-search" placeholder="Buscar producto..." onkeyup="filtrarCatalogo()">
+        </div>
+        <div class="category-pills">
+          <button class="pill-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
+          <button class="pill-btn" onclick="filtrarCategoria('ofertas', this)">Ofertas</button>
+          <button class="pill-btn" onclick="filtrarCategoria('populares', this)">Más Vendidos</button>
+        </div>
+      </div>
+
+      <!-- GRID DE PRODUCTOS ESTILO PÁGINA PRINCIPAL -->
+      <div class="catalog-grid" id="catalog-container">
+        <!-- Renderizado dinámico desde app.js -->
       </div>
     </div>
-  </main>
+  </section>
 
   <!-- PIE DE PÁGINA -->
   <footer class="footer">
@@ -54,8 +70,7 @@
         <p>Tu tienda online de confianza.</p>
       </div>
       <div class="footer-links">
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
+        <a href="index.html">Catálogo</a>
         <a href="contacto.html">Contacto</a>
         <a href="ayuda.html">Ayuda</a>
       </div>
@@ -65,7 +80,7 @@
     </div>
   </footer>
 
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
   <a href="https://wa.me/522722796693?text=Hola%20Tienda%20272,%20deseo%20más%20información" class="whatsapp-float" target="_blank" title="Contacto directo vía WhatsApp">
     💬
   </a>
