@@ -1,113 +1,75 @@
-/* Layout Principal del Catálogo estilo Temu */
-.catalog-container {
-  display: grid;
-  grid-template-columns: 240px 1fr; /* 240px para filtros laterales */
-  gap: 20px;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 20px 16px;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Completo | 272®</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-/* Sidebar de Filtros Lateral */
-.catalog-sidebar {
-  background: #ffffff;
-  border-right: 1px solid #ececec;
-  padding-right: 16px;
-}
+  <!-- BARRA SUPERIOR DE ANUNCIOS -->
+  <div class="announcement-bar">
+    <span>🔥 ENVÍO GRATIS Y PAGOS EN EFECTIVO EN OXXO / CONTRAENTREGA</span>
+    <span class="timer-badge" id="banner-timer">15m 00s</span>
+  </div>
 
-.filter-group {
-  margin-bottom: 24px;
-  border-bottom: 1px solid #f2f2f2;
-  padding-bottom: 16px;
-}
+  <!-- NAVEGACIÓN ESTILO GOOGLE SITES -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="logo-accent">272</span>.mx
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="ayuda.html">Ayuda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-.filter-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #222222;
-  margin-bottom: 12px;
-}
+  <!-- SECCIÓN CATÁLOGO DE PRODUCTOS -->
+  <main class="catalog-section">
+    <div class="container">
+      <h1 class="section-title">Catálogo de Productos</h1>
+      <p class="section-subtitle">Explora todos nuestros artículos disponibles</p>
+      
+      <div class="features-grid" id="catalog-container">
+        <!-- Carga dinámica mediante app.js -->
+      </div>
+    </div>
+  </main>
 
-/* Grid de Productos Adaptable */
-.catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-}
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-accent" style="font-size: 1.5rem; font-weight: 700;">272</span>
+        <p>Tu tienda online de confianza.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="ayuda.html">Ayuda</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 272®. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
-/* Tarjeta de Producto Estilo E-Commerce */
-.product-card {
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: flex;
-  flex-direction: column;
-}
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/522722796693?text=Hola%20Tienda%20272,%20deseo%20más%20información" class="whatsapp-float" target="_blank" title="Contacto directo vía WhatsApp">
+    💬
+  </a>
 
-.product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.product-image {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  background-color: #f7f7f7;
-}
-
-.product-info {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.product-title {
-  font-size: 13px;
-  color: #222222;
-  line-height: 1.4;
-  height: 36px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-bottom: 8px;
-}
-
-.product-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin-top: auto;
-}
-
-.price-current {
-  font-size: 16px;
-  font-weight: 700;
-  color: #ff5500; /* Naranja corporativo */
-}
-
-.price-old {
-  font-size: 12px;
-  color: #888888;
-  text-decoration: line-through;
-}
-
-/* Adaptación Mobile (Responsive) */
-@media (max-width: 768px) {
-  .catalog-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .catalog-sidebar {
-    display: none; /* Se convierte en un menú desplegable/drawer en móvil */
-  }
-  
-  .catalog-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-}
+  <script src="app.js"></script>
+</body>
+</html>
